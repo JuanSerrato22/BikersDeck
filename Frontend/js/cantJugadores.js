@@ -1,9 +1,7 @@
-// Variables globales
 let selectedPlayerCount = 0;
 
 // Función para seleccionar cantidad de jugadores
 function selectPlayers(count) {
-    // Remover selección previa
     document.querySelectorAll('.player-btn').forEach(btn => {
         btn.classList.remove('selected');
     });
@@ -74,7 +72,6 @@ function continueGame() {
 function showCards() {
     alert('Aquí se mostrarían las reglas y cartas del juego.\n\n¡Función por implementar!');
     
-    // Aquí podrías abrir un modal o redirigir a otra página
     // window.open('cards.html', '_blank');
 }
 

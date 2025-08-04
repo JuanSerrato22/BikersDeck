@@ -100,7 +100,6 @@ function finishPlayerSetup() {
     
     // Redirigir a la siguiente pantalla después de 2 segundos
     setTimeout(() => {
-        // Aquí puedes redirigir a la pantalla del juego
         window.location.href = 'lobby.html';
         alert(`¡Configuración completa!\n\nJugadores: ${finalNames.join(', ')}\n\n¡Listos para jugar!`);
     }, 2000);

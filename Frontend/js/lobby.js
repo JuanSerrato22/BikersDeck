@@ -14,7 +14,7 @@ function renderPlayers() {
     players.forEach((player, index) => {
         playersList.innerHTML += `
             <div class="player-card">
-                <img src="/Img/${player.avatar}" class="avatar" alt="${player.name}">
+                <img src="/Img/${player.avatar}" class="avatar">
                 <h3>${player.name}</h3>
                 <button onclick="openAvatarSelector(${index})">Cambiar avatar</button>
             </div>
