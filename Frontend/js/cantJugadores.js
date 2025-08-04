@@ -70,10 +70,7 @@ function continueGame() {
 
 // Función para mostrar cartas
 function showCards() {
-    alert('Aquí se mostrarían las reglas y cartas del juego.\n\n¡Función por implementar!');
-    
-    // window.open('cards.html', '_blank');
-}
+    window.location.href = '/Html/cartas.html';}
 
 // Efectos adicionales al cargar la página
 document.addEventListener('DOMContentLoaded', function() {
