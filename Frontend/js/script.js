@@ -61,8 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('🎮 BIKERS DECK - Triple J iniciado');
     
     // Inicializar todas las funcionalidades
-    initializeCardAnimations();
-    initializeKeyboardEvents();
     initializeParallaxEffect();
     initializeEntryAnimation();
     adjustThemeByTime();

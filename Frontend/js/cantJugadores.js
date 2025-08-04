@@ -63,20 +63,12 @@ function showContinueButton() {
 
 // Función para continuar el juego
 function continueGame() {
-    if (selectedPlayerCount === 0) {
-        alert('Por favor selecciona la cantidad de jugadores');
-        return;
-    }
-    
-    // Aquí puedes redirigir a la siguiente pantalla o llamar otra función
-    alert(`¡Perfecto! Iniciando juego para ${selectedPlayerCount} jugadores.\n\n¡Que comience la diversión!`);
-    
-    // Ejemplo de redirección (descomenta si tienes otra página)
-    // window.location.href = 'game.html';
-    
-    // O ejemplo de llamada a función para cambiar pantalla
-    // startGameSetup();
+    if (selectedPlayerCount === 0) return;
+
+    // Redirigir a la pantalla de nombres con la cantidad seleccionada como parámetro
+    window.location.href = `nombreJugadores.html?players=${selectedPlayerCount}`;
 }
+
 
 // Función para mostrar cartas
 function showCards() {

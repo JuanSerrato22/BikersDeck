@@ -1,16 +1,22 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial Black', Arial, sans-serif;
     background-image: url('/Img/Background.png');
-    background-repeat: no-repeat ;
+    background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 
 .container {
     display: flex;
@@ -24,32 +30,19 @@ body {
 
 /* Logo */
 .logo-container {
-    margin-bottom: 60px;
+    padding: 0;
+    margin-bottom: 80px;
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
-.logo-box {
-    background: rgba(255, 255, 255, 0.95);
-    border: 4px solid #fff;
-    padding: 30px 50px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.logo-title {
-    font-size: 4em;
-    color: #2c3e50;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-.logo-subtitle {
-    font-size: 1.5em;
-    color: #7f8c8d;
-    letter-spacing: 8px;
-    font-weight: normal;
+.logo-image {
+    width: 650px;
+    max-width: 90vw;
+    height: auto;
+    animation: fadeInUp 0.8s ease-out;
+    display: block;
 }
 
 /* Input del jugador */

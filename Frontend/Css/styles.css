@@ -1,10 +1,13 @@
-
-
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial Black', Arial, sans-serif;
     background-image: url('/Img/Background.png');
-    background-repeat: no-repeat ;
+    background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -14,61 +17,32 @@ body {
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Arial Black', Arial, sans-serif;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
-
-
-
 /* Contenedor principal */
 .main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    position: relative;
+    height: 100%;
     z-index: 10;
 }
 
 /* Logo container */
 .logo-container {
-    background: rgba(255, 255, 255, 0.95);
-    border: 4px solid #ffffff;
-    border-radius: 15px;
-    padding: 40px 60px;
-    margin-bottom: 80px;
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    text-align: center;
-    transform: perspective(500px) rotateX(2deg);
+    padding: 0;
+    margin-bottom: 60px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    animation: fadeInUp 0.8s ease-out;
 }
 
-/* Título principal */
-.main-title {
-    font-size: 4.5em;
-    font-weight: 900;
-    color: #2c3e50;
-    text-shadow: 
-        3px 3px 0 rgba(0, 0, 0, 0.1),
-        6px 6px 20px rgba(0, 0, 0, 0.2);
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    line-height: 0.9;
-}
-
-/* Subtítulo */
-.subtitle {
-    font-size: 1.4em;
-    color: #7f8c8d;
-    font-weight: 400;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    opacity: 0.8;
+.logo-image {
+    width: 60vw;
+    max-width: 750px;
+    height: auto;
+    animation: fadeInUp 0.8s ease-out;
+    display: block;
 }
 
 /* Botón de jugar */
@@ -81,7 +55,7 @@ body {
     font-weight: bold;
     color: white;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease-in-out;
     box-shadow: 
         0 8px 25px rgba(243, 156, 18, 0.4),
         0 4px 10px rgba(0, 0, 0, 0.2),
@@ -90,6 +64,7 @@ body {
     letter-spacing: 3px;
     position: relative;
     overflow: hidden;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
 }
 
 .play-button::before {
@@ -135,57 +110,25 @@ body {
     }
 }
 
-.logo-container {
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.play-button {
-    animation: fadeInUp 0.8s ease-out 0.3s both;
-}
-
-.card-corner {
-    animation: fadeInUp 0.6s ease-out 0.5s both;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 3em;
+    .logo-image {
+        width: 70vw;
     }
-    
-    .logo-container {
-        padding: 30px 40px;
-        margin-bottom: 60px;
-    }
-    
+
     .play-button {
         padding: 20px 60px;
         font-size: 1.8em;
     }
-    
-    .card {
-        width: 60px;
-        height: 90px;
-    }
-    
-    .card-stack {
-        width: 60px;
-        height: 90px;
-    }
 }
 
 @media (max-width: 480px) {
-    .main-title {
-        font-size: 2.2em;
+    .logo-image {
+        width: 80vw;
     }
-    
-    .subtitle {
-        font-size: 1.1em;
-        letter-spacing: 4px;
-    }
-    
+
     .play-button {
-        padding: 18px 50px;
-        font-size: 1.5em;
+        padding: 18px 40px;
+        font-size: 1.4em;
     }
 }
