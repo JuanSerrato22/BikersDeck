@@ -1,39 +1,63 @@
-﻿using Data.Implements.BaseData;
-using Data.Interfaces;
+﻿using Back_end.Context;
+using Data.Interface;
 using Entity.Model;
 
-namespace Data.Implements
+namespace Data.Implements.BaseData
 {
     public class RoomPlayerData : BaseModelData<RoomPlayers>, IRoomPlayersData
     {
         public RoomPlayerData(ApplicationDbContext context) : base(context)
         {
         }
-        public async Task<bool> UpdatePartial(RoomPlayers roomplayers)
+
+        public async Task<bool> ActiveAsync(int id, bool active)
         {
-            var existingRoomPlayers = await _dbSet.FindAsync(roomplayers.Id);
-            foreach (var prop in typeof(RoomPlayers).GetProperties().Where(p => p.CanWrite && p.Name != "Id"))
-            {
-                var val = prop.GetValue(roomplayers);
-                if (val != null && (!(val is string s) || !string.IsNullOrWhiteSpace(s)))
-                    prop.SetValue(existingRoomPlayers, val);
-            }
+            var roomPlayer = await _context.Set<RoomPlayers>().FindAsync(id);
+            if (roomPlayer == null)
+                return false;
+
+            roomPlayer.Status = active;
+            roomPlayer.DeleteAt = DateTime.UtcNow;
+
+            _context.Entry(roomPlayer).Property(rp => rp.Status).IsModified = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> UpdatePartial(RoomPlayers roomPlayer)
+        {
+            var existingRoomPlayer = await _context.RoomPlayers.FindAsync(roomPlayer.Id);
+            if (existingRoomPlayer == null)
+                return false;
+
+            // Solo se actualizan campos permitidos
+            existingRoomPlayer.NamePlayer = roomPlayer.NamePlayer;
+            existingRoomPlayer.Avatar = roomPlayer.Avatar;
+
+
+            _context.Entry(existingRoomPlayer).Property(rp => rp.NamePlayer).IsModified = true;
+            _context.Entry(existingRoomPlayer).Property(rp => rp.Avatar).IsModified = true;
 
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<bool> ActiveAsync(int id, bool active)
+        //metodo para registrar y guardar nombres jugadores  
+        private Dictionary<int, List<string>> _roomPlayers = new();
+
+        public void RegisterPlayers(int PlayersId, string NamePlayers)
         {
-            var roomplayers = await _context.Set<RoomPlayers>().FindAsync(id);
-            if (roomplayers == null)
-                return false;
+            if (!_roomPlayers.ContainsKey(PlayersId))
+                _roomPlayers[PlayersId] = new List<string>();
 
-            roomplayers.Active = active;
-            _context.Entry(roomplayers).Property(c => c.Active).IsModified = true;
+            _roomPlayers[PlayersId].Add(NamePlayers);
+        }
 
-            await _context.SaveChangesAsync();
-            return true;
+        public List<string> GetPlayers(int PlayersId)
+        {
+            return _roomPlayers.ContainsKey(PlayersId)
+                ? _roomPlayers[PlayersId]
+                : new List<string>();
         }
     }
 }
