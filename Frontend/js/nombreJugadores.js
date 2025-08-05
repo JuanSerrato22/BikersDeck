@@ -21,12 +21,6 @@ function initializeApp() {
         totalPlayersCount = parseInt(playersFromUrl);
     }
     
-    // También verificar localStorage por si viene de otra pantalla
-    const storedPlayers = localStorage.getItem('selectedPlayersCount');
-    if (storedPlayers && !isNaN(storedPlayers)) {
-        totalPlayersCount = parseInt(storedPlayers);
-    }
-    
     updateDisplay();
     updateProgress();
     playerInput.focus();
@@ -92,33 +86,31 @@ function nextPlayer() {
 }
 
 // Finalizar configuración de jugadores
+// Finalizar configuración de jugadores
 function finishPlayerSetup() {
-    // Guardar nombres en localStorage para usar en otras pantallas
     const finalNames = playerNames.map((name, index) => {
         return name.charAt(0).toUpperCase() + name.slice(1);
     });
-    
-    // Guardar toda la información necesaria
+
+    // Generar data de jugadores con avatares predeterminados
+    const playersData = finalNames.map((name, index) => ({
+        name,
+        avatar: `Img/avatars/avatar${index + 1}.png` // Cambia por tus rutas reales
+    }));
+
     localStorage.setItem('playerNames', JSON.stringify(finalNames));
     localStorage.setItem('totalPlayers', totalPlayersCount.toString());
-    localStorage.setItem('selectedPlayersCount', totalPlayersCount.toString());
-    
-    // Crear array de jugadores con avatares por defecto
-    const playersData = finalNames.map((name, index) => ({
-        name: name,
-        avatar: `avatar${(index % 4) + 1}.png` // Cicla entre avatar1.png a avatar4.png
-    }));
-    
-    localStorage.setItem('playersData', JSON.stringify(playersData));
-    
-    // Mostrar mensaje de finalización
+    localStorage.setItem('playersData', JSON.stringify(playersData)); // NUEVO: datos de jugador completos
+    localStorage.setItem('nombresJugadores', JSON.stringify(nombres));
+
+
     showSuccess('¡Configuración completa!');
-    
-    // Redirigir a la siguiente pantalla después de 2 segundos
+
     setTimeout(() => {
-        window.location.href = 'lobby.html';
-    }, 2000);
+        window.location.href = 'lobby.html'; // Redirige directo al lobby
+    }, 1500);
 }
+
 
 // Mostrar mensaje de error
 function showError(message) {
@@ -222,7 +214,6 @@ playerInput.addEventListener('input', function() {
 // Función para establecer número de jugadores (desde otra pantalla)
 function setTotalPlayers(count) {
     totalPlayersCount = count;
-    localStorage.setItem('selectedPlayersCount', count.toString());
     updateDisplay();
     updateProgress();
 }
@@ -261,8 +252,6 @@ function resetPlayerSetup() {
     playerInput.focus();
     localStorage.removeItem('playerNames');
     localStorage.removeItem('totalPlayers');
-    localStorage.removeItem('selectedPlayersCount');
-    localStorage.removeItem('playersData');
 }
 
 // Funciones para navegar entre pantallas (para integrar con otras pantallas)

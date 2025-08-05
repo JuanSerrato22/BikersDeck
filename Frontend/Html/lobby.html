@@ -1,48 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selección de Avatares</title>
-    <link rel="stylesheet" href="/Css/lobby.css">
+  <meta charset="UTF-8">
+  <title>Lobby - Juego de Cartas</title>
+  <link rel="stylesheet" href="/Css/lobby.css">
 </head>
 <body>
-    <div class="main-container">
-        <!-- Botón de cerrar -->
-        <div class="close-button">
-            <button class="btn-close">✕</button>
-        </div>
+  <div class="container">
+    <h1>Lobby del Juego</h1>
+    <div id="playersContainer" class="players-container"></div>
+    <button id="startGameBtn">Comenzar Juego</button>
+  </div>
 
-        <!-- Título -->
-        <div class="title-section">
-            <h1 class="screen-title">Personaliza tu Avatar</h1>
-            <p class="screen-subtitle">Toca en cualquier jugador para cambiar su avatar</p>
-        </div>
-
-        <!-- Contenedor de jugadores -->
-        <div class="players-container" id="playersContainer">
-            <!-- Los jugadores se generarán dinámicamente aquí -->
-        </div>
-
-        <!-- Botón iniciar -->
-        <div class="start-container">
-            <button class="play-button" id="btnStart">Iniciar Juego</button>
-        </div>
-
-        <!-- Modal de selección de avatar -->
-        <div class="avatar-modal" id="avatarModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Elige un Avatar</h2>
-                    <button class="modal-close" id="modalClose">✕</button>
-                </div>
-                <div class="avatar-grid" id="avatarGrid">
-                    <!-- Los avatares disponibles se cargarán aquí -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="/js/lobby.js"></script>
+  <script src="Js/lobby.js"></script>
 </body>
 </html>
